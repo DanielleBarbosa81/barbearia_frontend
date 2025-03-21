@@ -1,16 +1,21 @@
 import { Component } from '@angular/core';
-import { AgendamentoService } from '../../../app/services/agendamento.service';
+import { FormsModule } from '@angular/forms';
 
-@Component({ selector: 'app-agendar', templateUrl: './agendar.component.html' })
+@Component({
+  selector: 'app-agendar',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './agendar.component.html',
+  styleUrls: ['./agendar.component.css']
+})
 export class AgendarComponent {
-  clienteId: number = 0;
-  barbeiroId: number = 0;
-  dataHora: string = '';
+  agendamento = {
+    cliente: '',
+    data: '',
+    horario: ''
+  };
 
-  constructor(private agendamentoService: AgendamentoService) {}
-
-  agendar() {
-    const agendamento = { clienteId: this.clienteId, barbeiroId: this.barbeiroId, dataHora: this.dataHora };
-    this.agendamentoService.agendarHorario(agendamento).subscribe(() => alert('Agendamento realizado!'));
+  onSubmit() {
+    console.log('Atendimento agendado:', this.agendamento);
   }
 }

@@ -1,1 +1,16 @@
-<p>cadastrar-barbeiros works!</p>
+<div class="form-container">
+  <h2>Cadastrar Barbeiro</h2>
+  <form (ngSubmit)="onSubmit()" #barbeiroForm="ngForm">
+    <div>
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" [(ngModel)]="barbeiro.nome" required>
+    </div>
+
+    <div>
+      <label for="especialidade">Especialidade:</label>
+      <input type="text" id="especialidade" name="especialidade" [(ngModel)]="barbeiro.especialidade" required>
+    </div>
+
+    <button type="submit" [disabled]="!barbeiroForm.form.valid">Cadastrar</button>
+  </form>
+</div>

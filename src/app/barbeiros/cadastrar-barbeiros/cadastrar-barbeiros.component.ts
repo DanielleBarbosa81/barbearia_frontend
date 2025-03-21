@@ -1,15 +1,22 @@
 import { Component } from '@angular/core';
-import { BarbeiroService } from '../../../app/services/barbeiro.service';
+import { FormsModule } from '@angular/forms'; // Para usar ngModel em formulários
 
-@Component({ selector: 'app-cadastrar-barbeiro', templateUrl: './cadastrar-barbeiros.component.html' })
+@Component({
+  selector: 'app-cadastrar-barbeiro',
+  standalone: true,  // Indica que o componente é standalone
+  imports: [FormsModule],  // Importa o FormsModule para trabalhar com ngModel
+  templateUrl: './cadastrar-barbeiros.component.html',
+  styleUrls: ['./cadastrar-barbeiros.component.css']
+})
 export class CadastrarBarbeiroComponent {
-  nome: string = '';
-  especialidade: string = '';
+  barbeiro = {
+    nome: '',
+    especialidade: ''
+  };
 
-  constructor(private barbeiroService: BarbeiroService) {}
-
-  cadastrar() {
-    const barbeiro = { nome: this.nome, especialidade: this.especialidade };
-    this.barbeiroService.cadastrarBarbeiro(barbeiro).subscribe(() => alert('Barbeiro cadastrado!'));
+  onSubmit() {
+    console.log('Barbeiro cadastrado:', this.barbeiro);
+    // Lógica para salvar o barbeiro
   }
 }
+
