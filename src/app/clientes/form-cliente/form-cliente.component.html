@@ -1,0 +1,51 @@
+
+
+<div class="form-container">
+  <h2>Cadastro de Cliente</h2>
+
+  <form (ngSubmit)="onSubmit()" #clienteForm="ngForm">
+    <!-- Nome -->
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input
+        type="text"
+        id="nome"
+        name="nome"
+        class="form-control"
+        [(ngModel)]="cliente.nome"
+        required
+        placeholder="Digite o nome do cliente">
+    </div>
+
+    <!-- Telefone -->
+    <div class="form-group">
+      <label for="telefone">Telefone:</label>
+      <input
+        type="tel"
+        id="telefone"
+        name="telefone"
+        class="form-control"
+        [(ngModel)]="cliente.telefone"
+        required
+        placeholder="Digite o telefone">
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        class="form-control"
+        [(ngModel)]="cliente.email"
+        required
+        placeholder="Digite o email">
+    </div>
+
+    <!-- Botão de Enviar -->
+    <button type="submit" class="btn btn-primary" [disabled]="!clienteForm.form.valid">
+      Cadastrar Cliente
+    </button>
+  </form>
+</div>
