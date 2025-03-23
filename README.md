@@ -1,59 +1,73 @@
-# BarbeariaFrontend
+Barbearia Frontend
+Este é o frontend do sistema de gerenciamento de uma barbearia, desenvolvido com Angular e Angular Material. O projeto permite o cadastro de clientes, barbeiros e agendamentos.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+📌 Tecnologias Utilizadas
 
-## Development server
+Angular - Framework para desenvolvimento web
 
-To start a local development server, run:
+Angular Material - Biblioteca de componentes UI
 
-```bash
+TypeScript - Linguagem utilizada no desenvolvimento
+
+CSS - Para estilização dos componentes
+
+📂 Estrutura do Projeto
+
+barbearia_frontend/
+├── src/
+│   ├── app/
+│   │   ├── components/  # Componentes reutilizáveis
+│   │   ├── commons/     # Componentes compartilhados entre diferentes partes do app
+│   │   ├── services/    # Serviços para consumo da API
+│   │   ├── models/      # Interfaces e modelos de dados
+│   ├── styles/          # Estilos globais
+│   ├── angular.json     # Configurações do Angular
+├── package.json         # Dependências do projeto
+└── README.md            # Documentação do projeto
+
+
+🚀 Como Executar o Projeto
+
+Clone o repositório:
+
+git clone https://github.com/daniellebarbosa81/barbearia_frontend.git
+
+Acesse o diretório do projeto:
+
+cd barbearia_frontend
+
+Instale as dependências:
+
+npm install
+
+Inicie o servidor de desenvolvimento:
+
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Acesse no navegador:
 
-## Code scaffolding
+http://localhost:4200
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+📌 Funcionalidades
 
-```bash
-ng generate component component-name
-```
+✅ Cadastro de clientes 🧑‍💼
+✅ Cadastro de barbeiros 💈
+✅ Agendamentos 📅
+✅ Interface responsiva 📱💻
+✅ Integração com API REST 🌐
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+📦 Dependências Principais
 
-```bash
-ng generate --help
-```
+@angular/core - Estrutura principal do Angular
 
-## Building
+@angular/material - Componentes do Angular Material
 
-To build the project run:
+@angular/forms - Gerenciamento de formulários
 
-```bash
-ng build
-```
+rxjs - Programação reativa
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+angular/flex-layout - Layout responsivo
 
-## Running unit tests
+📜 Licença
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Este projeto está licenciado sob a MIT License.
