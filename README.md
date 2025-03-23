@@ -13,38 +13,36 @@ CSS - Para estilização dos componentes
 
 📂 Estrutura do Projeto
 
-barbearia_frontend/
-├── src/
-│   ├── app/
-│   │   ├── components/  # Componentes reutilizáveis
-│   │   ├── commons/     # Componentes compartilhados entre diferentes partes do app
-│   │   ├── services/    # Serviços para consumo da API
-│   │   ├── models/      # Interfaces e modelos de dados
-│   ├── styles/          # Estilos globais
-│   ├── angular.json     # Configurações do Angular
-├── package.json         # Dependências do projeto
-└── README.md            # Documentação do projeto
-
+* src/
+* app/
+* components / # Componentes reutilizáveis
+* commons /    # Componentes compartilhados entre diferentes partes do app
+* services/    # Serviços para consumo da API
+* models/      # Interfaces e modelos de dados
+* styles/      # Estilos globais
+* angular.json     # Configurações do Angular
+* package.json         # Dependências do projeto
+* README.md            # Documentação do projeto
 
 🚀 Como Executar o Projeto
 
-Clone o repositório:
+1 - Clone o repositório:
 
 git clone https://github.com/daniellebarbosa81/barbearia_frontend.git
 
-Acesse o diretório do projeto:
+2 - Acesse o diretório do projeto:
 
 cd barbearia_frontend
 
-Instale as dependências:
+3 - Instale as dependências:
 
 npm install
 
-Inicie o servidor de desenvolvimento:
+4 - Inicie o servidor de desenvolvimento:
 
 ng serve
 
-Acesse no navegador:
+5 - Acesse no navegador:
 
 http://localhost:4200
 
@@ -68,6 +66,4 @@ rxjs - Programação reativa
 
 angular/flex-layout - Layout responsivo
 
-📜 Licença
 
-Este projeto está licenciado sob a MIT License.
