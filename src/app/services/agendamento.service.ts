@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AgendamentoService {
-    private url = 'http://localhost:3000/agendamento';
-  apiUrl: any;
+    private url = 'http://localhost:8080/agendamento';
+    apiUrl: any;
 
   constructor(private http : HttpClient) { }
 
@@ -21,5 +21,11 @@ export class AgendamentoService {
 
   excluirAgendamento(id : number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/excluir/${id}`);
+  }
+  buscarAgendamentoPorId(id : number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/buscar/${id}`);
+  }
+  atualizarAgendamento(id : number, value : any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/atualizar/${id}`, value);
   }
 }

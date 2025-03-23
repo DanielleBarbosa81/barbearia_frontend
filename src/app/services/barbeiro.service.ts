@@ -16,4 +16,13 @@ export class BarbeiroService {
   cadastrarBarbeiro(barbeiro: Object): Observable<any> {
     return this.http.post(`${this.baseUrl}/cadastrar`, barbeiro);
   }
+  excluirBarbeiro(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/excluir/${id}`);
+  }
+  atualizarBarbeiro(id: number, value: any): Observable<Object> {
+    return this.http.put(`${this.baseUrl}/atualizar/${id}`, value);
+  }
+  buscarBarbeiroPorId(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/buscar/${id}`);
+  }
 }

@@ -1,44 +1,26 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
-import { filter, map, Subscription } from 'rxjs';
-
-
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { MenuBarComponent } from './commons/components/menu-bar/menu-bar.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-
+  standalone: true,
+  imports: [RouterOutlet, MenuBarComponent, MatMenuModule, MatButtonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
-  title = 'barber-shop-ui';
+export class AppComponent {
+  title = 'Barbearia Estilo';
 
-  private routeSubscription?: Subscription;
+  constructor(private readonly router: Router) { }
 
-  constructor(
-    private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute
-  ) { }
+  navigateTo(path: string) {
+    this.router.navigate([path])
 
-  ngOnDestroy(): void {
-    if (this.routeSubscription) {
-      this.routeSubscription.unsubscribe()
-    }
   }
-
-  ngOnInit(): void {
-    this.routeSubscription = this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd),
-      map(() => this.getRouteTitle(this.activatedRoute))
-    ).subscribe(title => this.title = title)
-  }
-
-  private getRouteTitle(route: ActivatedRoute): string {
-    let child = route;
-    while (child.firstChild) {
-      child = child.firstChild;
-    }
-    return child.snapshot.data['title'] || 'Default Title';
-  }
-
 }
+
+

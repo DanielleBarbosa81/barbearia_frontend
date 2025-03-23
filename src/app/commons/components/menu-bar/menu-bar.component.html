@@ -1,0 +1,19 @@
+<div class = "menu-bar">
+  <div class = "menu-bar__logo">
+    <h1>Barbearia Estilo</h1>
+    <p>Transformando sua aparência com estilo e confiança!</p>
+  </div>
+  <div class = "menu-bar__buttons">
+    <div class = "button-card" (click) = "navigateTo('clientes/cadastrar')">
+      <h2>Cadastro de Clientes</h2>
+    </div>
+    <div class = "button-card" (click) = "navigateTo('barbeiros/cadastrar')">
+      <h2>Cadastro de Barbeiros</h2>
+    </div>
+    <div class = "button-card" (click) = "navigateTo('agendamentos/agendar')">
+      <h2>Agendamento de Serviços</h2>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="navigateTo('agendamentos/agendar')">Agendar</button>
+        <button mat-menu-item (click)="navigateTo('agendamentos/consultar')">Consultar</button>
+      </mat-menu>
+    </div>

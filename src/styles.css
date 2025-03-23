@@ -1,4 +1,80 @@
-/* You can add global styles to this file, and also import other style files */
+/* Reset básico */
+body, h1, h2, p, ul, li {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Estilo do corpo */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+header h1 {
+  font-size: 36px;
+}
+
+header p {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+/* Container de cards */
+.card-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 40px auto;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+/* Estilo dos cards */
+.card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card h2 {
+  color: #4caf50;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Efeitos de hover nos cards */
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+}
+

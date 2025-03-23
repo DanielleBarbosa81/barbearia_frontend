@@ -1,12 +1,24 @@
-<nav>
-  <ul>
-    <li><a routerLink="/barbeiros/cadastrar">Cadastrar Barbeiro</a></li>
-    <li><a routerLink="/barbeiros/listar">Listar Barbeiros</a></li>
-    <li><a routerLink="/clientes/cadastrar">Cadastrar Cliente</a></li>
-    <li><a routerLink="/clientes/listar">Listar Clientes</a></li>
-    <li><a routerLink="/agendamentos/agendar">Agendar Atendimento</a></li>
-  </ul>
-</nav>
+<header>
+  <h1>{{ title }}</h1>
 
-<router-outlet></router-outlet>
+</header>
 
+<main>
+  <section class="button-container">
+    <div class="button-card" (click)="navigateTo('clientes/cadastrar')">
+      <h2>Clientes</h2>
+    </div>
+    <div class="button-card" (click)="navigateTo('barbeiros/cadastrar')">
+      <h2>Barbeiros</h2>
+    </div>
+    <div class="button-card" (click)="navigateTo('agendamentos/agendar')">
+      <h2>Agendamentos</h2>
+    </div>
+  </section>
+
+  <router-outlet></router-outlet> 
+</main>
+
+<footer>
+  <p>© 2025 Barbearia Estilo. Todos os direitos reservados.</p>
+</footer>

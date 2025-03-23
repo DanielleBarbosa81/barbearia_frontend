@@ -1,0 +1,80 @@
+
+/* Estilo geral do formulário */
+.form-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.form-container h2 {
+  text-align: center;
+  color: #4CAF50;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Estilo dos campos de entrada */
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333333;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.form-container input:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Estilo do botão de envio */
+.form-container button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.form-container button:hover {
+  background-color: #45a049;
+  transform: scale(1.02);
+}
+
+.form-container button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Ajuste para responsividade */
+@media (max-width: 600px) {
+  .form-container {
+    padding: 15px;
+  }
+
+  .form-container input {
+    font-size: 13px;
+  }
+
+  .form-container button {
+    font-size: 14px;
+  }
+}

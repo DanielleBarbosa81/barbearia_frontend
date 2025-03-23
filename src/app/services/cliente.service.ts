@@ -18,4 +18,14 @@ export class ClienteService {
   cadastrarCliente(cliente: Object): Observable<Object> {
     return this.http.post(`${this.apiUrl}/cadastrar`, cliente);
   }
+  excluirCliente(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/excluir/${id}`);
+  }
+  atualizarCliente(id: number, value: any): Observable<Object> {
+    return this.http.put(`${this.apiUrl}/atualizar/${id}`, value);
+  }
+  buscarClientePorId(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/buscar/${id}`);
+  }
+  
 }
