@@ -1,1 +1,20 @@
-<p>listar-barbeiros works!</p>
+<h2>Lista de Barbeiros</h2>
+
+<table *ngIf="barbeiros.length > 0">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Especialidade</th>
+      <th>Telefone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let barbeiro of barbeiros">
+      <td>{{ barbeiro.nome }}</td>
+      <td>{{ barbeiro.especialidade }}</td>
+      <td>{{ barbeiro.telefone }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="barbeiros.length === 0">Nenhum barbeiro encontrado.</p>

@@ -1,22 +1,41 @@
 <header>
   <h1>{{ title }}</h1>
-
 </header>
 
 <main>
   <section class="button-container">
-    <div class="button-card" (click)="navigateTo('clientes/cadastrar')">
-      <h2>Clientes</h2>
+    <!-- Submenu de Clientes -->
+    <div class="button-card">
+      <h2 (click)="toggleMenu('clientes')">Clientes</h2>
+      <ul *ngIf="activeMenu === 'clientes'" class="submenu">
+        <li (click)="navigateTo('clientes/cadastrar')">Cadastrar Clientes</li>
+        <li (click)="navigateTo('clientes/listar')">Listar Clientes</li>
+      </ul>
     </div>
-    <div class="button-card" (click)="navigateTo('barbeiros/cadastrar')">
-      <h2>Barbeiros</h2>
-    </div>
-    <div class="button-card" (click)="navigateTo('agendamentos/agendar')">
-      <h2>Agendamentos</h2>
-    </div>
+
+
+ <!-- Submenu de Barbeiros -->
+<div class="button-card">
+  <h2 (click)="toggleMenu('barbeiros')">Barbeiros</h2>
+  <ul *ngIf="activeMenu === 'barbeiros'" class="submenu">
+    <li (click)="navigateTo('barbeiros/cadastrar')">Cadastrar Barbeiros</li>
+    <li (click)="navigateTo('barbeiros/listar')">Listar Barbeiros</li>
+  </ul>
+</div>
+
+
+    <!-- Submenu de Agendamentos -->
+<div class="button-card">
+  <h2 (click)="toggleMenu('agendamentos')">Agendamentos</h2>
+  <ul *ngIf="activeMenu === 'agendamentos'" class="submenu">
+    <li (click)="navigateTo('agendamentos/agendar')">Agendar clientes</li>
+    <li (click)="navigateTo('agendamentos/listar')">Listar Agendamentos</li>
+  </ul>
+</div>
+
   </section>
 
-  <router-outlet></router-outlet> 
+  <router-outlet></router-outlet> <!-- Renderiza os componentes das rotas -->
 </main>
 
 <footer>

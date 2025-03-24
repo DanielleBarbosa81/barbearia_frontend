@@ -1,1 +1,27 @@
-<p>listar-agendamentos works!</p>
+<h2>Lista de Agendamentos</h2>
+
+<!-- Tabela de agendamentos -->
+<table *ngIf="agendamentos.length > 0">
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Barbeiro</th>
+      <th>Data</th>
+      <th>Hora</th>
+      <th>Serviço</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let agendamento of agendamentos">
+      <td>{{ agendamento.cliente }}</td>
+      <td>{{ agendamento.barbeiro }}</td>
+      <td>{{ agendamento.data }}</td>
+      <td>{{ agendamento.hora }}</td>
+      <td>{{ agendamento.servico }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Mensagem para lista vazia -->
+<p *ngIf="agendamentos.length === 0">Nenhum agendamento encontrado.</p>
+
