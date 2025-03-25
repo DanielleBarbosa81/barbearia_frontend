@@ -1,8 +1,10 @@
-<h2>Clientes Cadastrados</h2>
+<h2>Lista de Clientes</h2>
 
+<!-- Tabela para exibir os clientes -->
 <table *ngIf="clientes.length > 0">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Nome</th>
       <th>Email</th>
       <th>Telefone</th>
@@ -10,6 +12,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let cliente of clientes">
+      <td>{{ cliente.id }}</td>
       <td>{{ cliente.nome }}</td>
       <td>{{ cliente.email }}</td>
       <td>{{ cliente.telefone }}</td>
@@ -17,4 +20,6 @@
   </tbody>
 </table>
 
+<!-- Mensagem exibida quando não há clientes -->
 <p *ngIf="clientes.length === 0">Nenhum cliente encontrado.</p>
+
