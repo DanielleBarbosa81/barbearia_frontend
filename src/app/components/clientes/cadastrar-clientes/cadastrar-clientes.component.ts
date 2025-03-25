@@ -1,23 +1,42 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // Para usar ngModel em formulários
+import { Component, OnInit } from '@angular/core';
+import { ClienteService } from '../../../services/cliente.service'; // Importe o seu serviço
+import { Router } from '@angular/router'; // Para redirecionar após o cadastro
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-cadastrar-clientes',
-  standalone: true,  // Indica que o componente é standalone
-  imports: [FormsModule],  // Importa o FormsModule para trabalhar com ngModel
+  selector: 'app-cadastrar-cliente',
+  imports: [CommonModule, FormsModule],
   templateUrl: './cadastrar-clientes.component.html',
-  styleUrl: './cadastrar-clientes.component.css'
+  styleUrls: ['./cadastrar-clientes.component.css']
 })
-export class CadastrarClientesComponent {
-  cliente = {
+export class CadastrarClienteComponent implements OnInit {
+  clienteDto = { // Objeto para armazenar os dados do cliente
     nome: '',
     email: '',
     telefone: ''
   };
 
-  onSubmit() {
-    console.log('Cliente cadastrado:', this.cliente);
-    // Lógica para salvar o cliente
-  }
+  constructor(private clienteService: ClienteService, private router: Router) {}
 
+  ngOnInit(): void {}
+
+  // Método que será chamado ao submeter o formulário
+  onSubmit(): void {
+    console.log('Formulário enviado:', this.clienteDto);
+    // Chama o serviço para cadastrar o cliente
+    this.clienteService.cadastrarCliente(this.clienteDto).subscribe(
+      (data) => {
+        console.log('Cliente cadastrado com sucesso:', data);
+        this.router.navigate(['/clientes']); // Redireciona após o cadastro
+      },
+      (error) => {
+        console.error('Erro ao cadastrar cliente:', error);
+        alert('Erro ao cadastrar cliente');
+      }
+    );
+  }
 }
+
+
+
