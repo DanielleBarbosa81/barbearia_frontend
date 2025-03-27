@@ -15,17 +15,17 @@ export class ListarClientesComponent implements OnInit {
   constructor(private clienteService: ClienteService) {}
 
   ngOnInit(): void {
-    // Chama o serviço para obter a lista de clientes
     this.clienteService.listarClientes().subscribe(
       (data) => {
-        this.clientes = data; // Atribui a lista de clientes
-        console.log('Clientes carregados:', this.clientes); // Verifique no console se os dados estão chegando
+        this.clientes = data; // Atribui os dados retornados pelo backend
+        console.log('Clientes carregados:', this.clientes); // Log para verificar os dados recebidos
       },
       (error) => {
         console.error('Erro ao carregar clientes:', error);
       }
     );
   }
+  
 
   
 }

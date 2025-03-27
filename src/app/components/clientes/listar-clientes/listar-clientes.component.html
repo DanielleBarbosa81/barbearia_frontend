@@ -1,25 +1,26 @@
-<h2>Clientes Cadastrados</h2>
+<div class="client-table-container">
+  <h2>Clientes</h2>
 
-<!-- Tabela para exibir os clientes -->
-<table *ngIf="clientes.length > 0">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Telefone</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let cliente of clientes">
-      <td>{{ cliente.id }}</td>
-      <td>{{ cliente.nome }}</td>
-      <td>{{ cliente.email }}</td>
-      <td>{{ cliente.telefone }}</td>
-    </tr>
-  </tbody>
-</table>
+  <!-- Tabela para exibir os clientes -->
+  <table *ngIf="clientes.length > 0" class="styled-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Telefone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clientes">
+        <td>{{ cliente.id }}</td>
+        <td>{{ cliente.nome }}</td>
+        <td>{{ cliente.email }}</td>
+        <td>{{ cliente.telefone }}</td>
+      </tr>
+    </tbody>
+  </table>
 
-<!-- Mensagem exibida quando não há clientes -->
-<p *ngIf="clientes.length === 0">Nenhum cliente encontrado.</p>
-
+  <!-- Mensagem caso não haja clientes -->
+  <p *ngIf="clientes.length === 0" class="no-data">Nenhum cliente encontrado.</p>
+</div>

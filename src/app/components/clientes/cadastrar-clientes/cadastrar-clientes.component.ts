@@ -10,33 +10,47 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './cadastrar-clientes.component.html',
   styleUrls: ['./cadastrar-clientes.component.css']
 })
-export class CadastrarClienteComponent implements OnInit {
-  clienteDto = { // Objeto para armazenar os dados do cliente
+export class CadastrarClienteComponent {
+  cliente = {
     nome: '',
     email: '',
-    telefone: ''
-  };
+    telefone: '',
+  }; // Objeto para armazenar os dados do formulário
 
-  constructor(private clienteService: ClienteService, private router: Router) {}
+  // Variáveis para exibir mensagens de sucesso ou erro
+  mensagem: string | null = null;
+  erro: string | null = null;
 
-  ngOnInit(): void {}
+  constructor(private clienteService: ClienteService) {}
 
-  // Método que será chamado ao submeter o formulário
+  // Método chamado ao submeter o formulário
   onSubmit(): void {
-    console.log('Formulário enviado:', this.clienteDto);
-    // Chama o serviço para cadastrar o cliente
-    this.clienteService.cadastrarCliente(this.clienteDto).subscribe(
-      (data) => {
-        console.log('Cliente cadastrado com sucesso:', data);
-        this.router.navigate(['/clientes']); // Redireciona após o cadastro
+    this.clienteService.cadastrarCliente(this.cliente).subscribe(
+      (response) => {
+        console.log('Cliente cadastrado com sucesso:', response);
+
+        // Define a mensagem de sucesso
+        window.alert('Cliente cadastrado com sucesso!');
+
+        this.erro = null; // Limpa qualquer mensagem de erro anterior
+
+        // Limpa o formulário
+        this.cliente = { nome: '', email: '', telefone: '' };
+
+        // Remove a mensagem de sucesso após 3 segundos
+        setTimeout(() => {
+          this.mensagem = null;
+        }, 3000);
       },
       (error) => {
         console.error('Erro ao cadastrar cliente:', error);
-        alert('Erro ao cadastrar cliente');
+
+        // Define a mensagem de erro
+        window.alert('Ocorreu um erro ao cadastrar o cliente. Tente novamente.');
+
+        this.mensagem = null; // Limpa a mensagem de sucesso, caso exista
       }
     );
   }
 }
-
-
 

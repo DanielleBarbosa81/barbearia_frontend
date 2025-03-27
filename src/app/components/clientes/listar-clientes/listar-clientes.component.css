@@ -63,17 +63,64 @@
   cursor: not-allowed;
 }
 
+/* Estilo geral da tabela de clientes */
+.client-table-container {
+  margin: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.client-table-container h2 {
+  text-align: center;
+  color: #4CAF50;
+  margin-bottom: 20px;
+}
+
+/* Estilo da tabela formatada */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse; /* Remove espaços entre bordas */
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+  border: 1px solid #ddd; /* Adiciona bordas visíveis */
+  padding: 10px; /* Espaçamento interno das células */
+}
+
+.styled-table th {
+  background-color: #4CAF50; /* Fundo do cabeçalho */
+  color: #ffffff; /* Cor do texto do cabeçalho */
+  text-align: left; /* Alinha os títulos à esquerda */
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #ddd; /* Adiciona linha inferior entre as células */
+}
+
+.styled-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* Fundo alternado para linhas pares */
+}
+
+.styled-table tbody tr:hover {
+  background-color: #f1f1f1; /* Cor ao passar o mouse */
+}
+
+.no-data {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  margin-top: 20px;
+}
+
 /* Ajuste para responsividade */
 @media (max-width: 600px) {
-  .form-container {
-    padding: 15px;
-  }
-
-  .form-container input {
-    font-size: 13px;
-  }
-
-  .form-container button {
+  .styled-table th,
+  .styled-table td {
     font-size: 14px;
+    padding: 8px;
   }
 }
+
