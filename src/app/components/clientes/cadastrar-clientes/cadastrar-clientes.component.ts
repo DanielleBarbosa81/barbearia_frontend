@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteService } from '../../../services/cliente.service'; // Importe o seu serviço
-import { Router } from '@angular/router'; // Para redirecionar após o cadastro
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 

@@ -1,22 +1,55 @@
-<div class="form-container">
+<div class="agendar-container">
   <h2>Agendar Atendimento</h2>
+
   <form (ngSubmit)="onSubmit()" #agendamentoForm="ngForm">
+    <!-- Campo Cliente -->
     <div>
-      <label for="cliente">Cliente:</label>
-      <input type="text" id="cliente" name="cliente" [(ngModel)]="agendamento.cliente" required>
+      <label for="cliente">Cliente</label>
+      <select id="cliente" [(ngModel)]="agendamento.cliente" name="cliente" required #cliente="ngModel">
+        <option value="" disabled selected>Selecione um cliente</option>
+        <option *ngFor="let cliente of clientes" [value]="cliente.id">
+          {{ cliente.nome }}
+        </option>
+      </select>
+      <div *ngIf="cliente.invalid && (cliente.dirty || cliente.touched)" class="error-message">
+        O cliente é obrigatório.
+      </div>
     </div>
 
+    <!-- Campo Data -->
     <div>
-      <label for="data">Data:</label>
-      <input type="date" id="data" name="data" [(ngModel)]="agendamento.data" required>
+      <label for="data">Data</label>
+      <input type="date" id="data" [(ngModel)]="agendamento.data" name="data" required #data="ngModel" />
+      <div *ngIf="data.invalid && (data.dirty || data.touched)" class="error-message">
+        A data é obrigatória.
+      </div>
     </div>
 
+    <!-- Campo Horário -->
     <div>
-      <label for="horario">Horário:</label>
-      <input type="time" id="horario" name="horario" [(ngModel)]="agendamento.horario" required>
+      <label for="horario">Horário</label>
+      <input type="time" id="horario" [(ngModel)]="agendamento.horario" name="horario" required #horario="ngModel" />
+      <div *ngIf="horario.invalid && (horario.dirty || horario.touched)" class="error-message">
+        O horário é obrigatório.
+      </div>
     </div>
 
-    <button type="submit" [disabled]="!agendamentoForm.form.valid">Agendar</button>
+    <!-- Campo Barbeiro -->
+    <div>
+      <label for="barbeiro">Barbeiro</label>
+      <select id="barbeiro" [(ngModel)]="agendamento.barbeiro" name="barbeiro" required #barbeiro="ngModel">
+        <option value="" disabled selected>Selecione um barbeiro</option>
+        <option *ngFor="let barbeiro of barbeiros" [value]="barbeiro.id">
+          {{ barbeiro.nome }}
+        </option>
+      </select>
+      <div *ngIf="barbeiro.invalid && (barbeiro.dirty || barbeiro.touched)" class="error-message">
+        O barbeiro é obrigatório.
+      </div>
+    </div>
+
+    <!-- Botão de Submissão -->
+    <button type="submit" [disabled]="agendamentoForm.invalid">Agendar</button>
   </form>
 </div>
 

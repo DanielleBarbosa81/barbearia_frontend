@@ -1,20 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BarbeiroService } from '../../../services/barbeiro.service';  // Serviço responsável por buscar dados dos barbeiros
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listar-barbeiros',
-  standalone: true, // Indica que o componente é standalone
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './listar-barbeiros.component.html',
-  styleUrls: ['./listar-barbeiros.component.css']
+  styleUrls: ['./listar-barbeiros.component.css'],
 })
-export class ListarBarbeirosComponent {
-  // Lista de barbeiros inicial (dados simulados)
-  barbeiros: any [] = [];
+export class ListarBarbeirosComponent implements OnInit {
+  barbeiros: any[] = [];  // Lista de barbeiros
 
+  constructor(private barbeiroService: BarbeiroService) {}
 
-  // Método para exibir a lista no console (exemplo básico)
-  onSubmit() {
-    console.log('Lista de barbeiros:', this.barbeiros);
+  ngOnInit(): void {
+    this.barbeiroService.listarBarbeiros().subscribe(
+      (data) => {
+        console.log('Resposta do backend:', data);  // Verifique a resposta
+        this.barbeiros = data;  // Atribui os dados recebidos ao array de barbeiros
+        console.log('Barbeiros carregados:', this.barbeiros);  // Log para verificar os barbeiros
+      },
+      (error) => {
+        console.error('Erro ao carregar barbeiros:', error);  // Exibe erro, caso haja algum
+      }
+    );
   }
 }
+
+
+
+

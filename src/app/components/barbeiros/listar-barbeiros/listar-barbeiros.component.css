@@ -1,80 +1,128 @@
-
-/* Estilo geral do formulário */
-.form-container {
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Estilo geral do contêiner */
+.barbeiro-table-container {
+  margin: 20px auto;
+  max-width: 800px;
   font-family: 'Arial', sans-serif;
+  text-align: center;
 }
 
-.form-container h2 {
-  text-align: center;
+.barbeiro-table-container h2 {
   color: #4CAF50;
   margin-bottom: 20px;
-  font-size: 24px;
 }
 
-/* Estilo dos campos de entrada */
-.form-container label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 14px;
-  color: #333333;
-}
-
-.form-container input {
-  width: 100%;
+/* Estilização do campo de pesquisa */
+.search-input {
+  width: 60%;
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
-  transition: border-color 0.3s;
 }
 
-.form-container input:focus {
-  border-color: #4CAF50;
-  outline: none;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
-}
-
-/* Estilo do botão de envio */
-.form-container button {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  color: #ffffff;
-  background-color: #4CAF50;
+.btn {
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 14px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 }
 
-.form-container button:hover {
-  background-color: #45a049;
-  transform: scale(1.02);
+/* Botão de pesquisa */
+.btn-search {
+  background-color: #2196F3;
+  color: white;
 }
 
-.form-container button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
+.btn-search:hover {
+  background-color: #1976D2;
 }
 
-/* Ajuste para responsividade */
+/* Botão de cadastrar */
+.btn-add {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-add:hover {
+  background-color: #388E3C;
+}
+
+/* Botão de editar */
+.btn-edit {
+  background-color: #FFC107;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #FFA000;
+}
+
+/* Botão de excluir */
+.btn-delete {
+  background-color: #F44336;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #D32F2F;
+}
+
+/* Estilo da tabela */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.styled-table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.styled-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Mensagem de "Nenhum barbeiro encontrado" */
+.no-data {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  margin-top: 20px;
+}
+
+/* Ajuste para telas pequenas */
 @media (max-width: 600px) {
-  .form-container {
-    padding: 15px;
+  .search-input {
+    width: 100%;
   }
 
-  .form-container input {
-    font-size: 13px;
+  .btn {
+    width: 100%;
+    margin-bottom: 5px;
   }
 
-  .form-container button {
+  .styled-table th,
+  .styled-table td {
     font-size: 14px;
+    padding: 8px;
   }
 }
+
+

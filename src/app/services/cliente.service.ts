@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -11,20 +11,7 @@ export class ClienteService {
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * Lista os clientes cadastrados no banco de dados.
-   * @returns Observable com a lista de clientes.
-   */
-  listarClientes(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/listarClientes`).pipe(
-      catchError((error) => {
-        console.error('Erro ao listar clientes:', error);
-        return throwError(error); // Propaga o erro para o componente
-      })
-    );
-  }
-
-  /**
+   /**
    * Cadastra um novo cliente no banco de dados.
    * @param clienteDto Objeto com os dados do cliente.
    * @returns Observable com o resultado da operação.
@@ -37,4 +24,24 @@ export class ClienteService {
       })
     );
   }
+
+  /**
+   * Lista os clientes cadastrados no banco de dados.
+   * @returns Observable com a lista de clientes.
+   */
+  listarClientes(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/listarClientes`).pipe(
+      map(response => {
+        console.log('Resposta da API:', response); // Log para depuração
+        return response; // Retorna diretamente o array de clientes
+      }),
+      catchError((error) => {
+        console.error('Erro ao listar clientes:', error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+
+
 }
