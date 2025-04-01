@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ClienteService } from '../../../services/cliente.service';
+import { ClienteDto, ClienteService } from '../../../services/cliente.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,12 +10,12 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./listar-clientes.component.css'],
 })
 export class ListarClientesComponent implements OnInit {
-  clientes: any[] = [];
+  clientes:  ClienteDto[] = [];
 
   constructor(private clienteService: ClienteService) {}
 
   ngOnInit(): void {
-    this.clienteService.listarClientes().subscribe(
+    this.clienteService.findAll().subscribe(
       (data) => {
         this.clientes = data; // Atribui os dados retornados pelo backend
         console.log('Clientes carregados:', this.clientes); // Log para verificar os dados recebidos
@@ -25,7 +25,7 @@ export class ListarClientesComponent implements OnInit {
       }
     );
   }
-  
 
-  
+
+
 }

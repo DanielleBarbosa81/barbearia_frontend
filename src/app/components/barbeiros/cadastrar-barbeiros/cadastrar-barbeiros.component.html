@@ -3,12 +3,12 @@
   <form (ngSubmit)="onSubmit()" #barbeiroForm="ngForm">
     <div>
       <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" [(ngModel)]="barbeiro.nome" required>
+      <input type="text" id="nome" name="barbeiroNome" [(ngModel)]="barbeiro.barbeiroNome" required>
     </div>
 
     <div>
       <label for="especialidade">Especialidade:</label>
-      <input type="text" id="especialidade" name="especialidade" [(ngModel)]="barbeiro.especialidade" required>
+      <input type="text" id="especialidade" name="barbeiroEspecialidade" [(ngModel)]="barbeiro.barbeiroEspecialidade" required>
     </div>
 
     <button type="submit" [disabled]="!barbeiroForm.form.valid">Cadastrar</button>

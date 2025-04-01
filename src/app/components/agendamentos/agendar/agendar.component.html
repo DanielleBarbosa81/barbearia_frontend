@@ -1,37 +1,30 @@
 <div class="form-container">
   <h2>Agendar Atendimento</h2>
   <form (ngSubmit)="salvarAgendamento()" #agendamentoForm="ngForm">
-    <!-- Campo Cliente -->
+
     <div>
       <label for="cliente">Cliente:</label>
-      <select id="cliente" name="cliente" [(ngModel)]="agendamento.cliente" required>
-        <option value="" disabled selected>Selecione um cliente</option>
-        <option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.nome }}</option>
+      <select id="cliente" name="cliente" [(ngModel)]="agendamento.clienteId" required>
+        <option *ngFor="let cliente of clientes" [value]="cliente.clienteId">
+          {{ cliente.clienteId }}
+        </option>
       </select>
     </div>
 
-    <!-- Campo Barbeiro -->
     <div>
       <label for="barbeiro">Barbeiro:</label>
-      <select id="barbeiro" name="barbeiro" [(ngModel)]="agendamento.barbeiro" required>
-        <option value="" disabled selected>Selecione um barbeiro</option>
-        <option *ngFor="let barbeiro of barbeiros" [value]="barbeiro.id">{{ barbeiro.nome }}</option>
+      <select id="barbeiro" name="barbeiro" [(ngModel)]="agendamento.barbeiroId" required>
+        <option *ngFor="let barbeiro of barbeiros" [value]="barbeiro.barbeiroId">
+          {{ barbeiro.barbeiroId }}
+        </option>
       </select>
     </div>
 
-    <!-- Campo Data -->
     <div>
-      <label for="data">Data:</label>
-      <input type="date" id="data" name="data" [(ngModel)]="agendamento.data" required>
+      <label for="dataHora">Data e Hora:</label>
+      <input type="datetime-local" id="dataHora" name="dataHora" [(ngModel)]="agendamento.dataHora" required>
     </div>
 
-    <!-- Campo Horário -->
-    <div>
-      <label for="horario">Horário:</label>
-      <input type="time" id="horario" name="horario" [(ngModel)]="agendamento.horario" required>
-    </div>
-
-    <button type="submit" [disabled]="!agendamentoForm.valid">Agendar</button>
+    <button type="submit" [disabled]="!agendamentoForm.form.valid">Agendar</button>
   </form>
-  <div *ngIf="mensagem" class="mensagem">{{ mensagem }}</div>
 </div>

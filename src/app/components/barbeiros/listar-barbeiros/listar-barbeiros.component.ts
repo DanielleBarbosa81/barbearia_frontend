@@ -15,7 +15,7 @@ export class ListarBarbeirosComponent implements OnInit {
   constructor(private barbeiroService: BarbeiroService) {}
 
   ngOnInit(): void {
-    this.barbeiroService.listarBarbeiros().subscribe(
+    this.barbeiroService.findAll().subscribe(
       (data) => {
         console.log('Resposta do backend:', data);  // Verifique a resposta
         this.barbeiros = data;  // Atribui os dados recebidos ao array de barbeiros

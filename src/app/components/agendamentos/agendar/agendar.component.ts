@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms';
-import { ClienteService } from '../../../services/cliente.service';
-import { BarbeiroService } from '../../../services/barbeiro.service';
 import { AgendamentoService } from '../../../services/agendamento.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ClienteDto } from '../../../services/cliente.service';
+import { BarbeiroDto } from '../../../services/barbeiro.service';
 
 @Component({
   selector: 'app-agendar',
@@ -14,64 +14,69 @@ import { AgendamentoService } from '../../../services/agendamento.service';
 })
 export class AgendarComponent implements OnInit {
   agendamento = {
-    cliente: '',
-    data: '',
-    horario: '',
-    barbeiro: ''
+    clienteId: null as number | null,
+    barbeiroId: null as number | null,
+    dataHora: ''
   };
 
-  clientes: any[] = [];
-  barbeiros: any[] = [];
+  clientes: ClienteDto[] = [];
+  barbeiros: BarbeiroDto[] = [];
+  datasAgendadas: string[] = [];
   mensagem: string | null = null;
+  erro: string | null = null;
 
-  constructor(
-    private agendamentoService: AgendamentoService,
-    private clienteService: ClienteService,
-    private barbeiroService: BarbeiroService
-  ) {}
+  constructor(private agendamentoService: AgendamentoService) {}
 
   ngOnInit(): void {
-    this.clienteService.listarClientes().subscribe(data => {
-      this.clientes = data;
-    });
-
-    this.barbeiroService.listarBarbeiros().subscribe(data => {
-      this.barbeiros = data;
-    });
+    this.loadClientes();
+    this.loadBarbeiros();
+    this.loadDatasAgendadas();
   }
 
+  loadClientes(): void {
+    this.agendamentoService.getClientes().subscribe(
+      (data) => (this.clientes = data),
+      (error) => console.error('Erro ao carregar clientes:', error)
+    );
+  }
+
+  loadBarbeiros(): void {
+    this.agendamentoService.getBarbeiros().subscribe(
+      (data) => (this.barbeiros = data),
+      (error) => console.error('Erro ao carregar barbeiros:', error)
+    );
+  }
+
+  loadDatasAgendadas(): void {
+    this.agendamentoService.buscarDatasAgendadas().subscribe(
+      (data) => (this.datasAgendadas = data),
+      (error) => console.error('Erro ao carregar datas agendadas:', error)
+    );
+  }
+
+  // ✅ Método correto para salvar o agendamento
   salvarAgendamento(): void {
-    if (this.agendamento.cliente && this.agendamento.barbeiro && this.agendamento.data && this.agendamento.horario) {
-      const dataHora = `${this.agendamento.data}T${this.agendamento.horario}`;
-
-      const novoAgendamento = {
-        barbeiro: this.agendamento.barbeiro,
-        cliente: this.agendamento.cliente,
-        dataHora: dataHora
-      };
-
-      this.agendamentoService.salvarAgendamento(novoAgendamento).subscribe(
-        () => {
-          this.mensagem = 'Agendamento realizado com sucesso!';
-          this.resetarFormulario();
-        },
-        (error) => {
-          console.error('Erro ao salvar agendamento:', error);
-          this.mensagem = 'Erro ao salvar o agendamento. Tente novamente.';
-        }
-      );
-    } else {
-      this.mensagem = 'Preencha todos os campos antes de salvar o agendamento.';
+    if (this.agendamento.clienteId === null || this.agendamento.barbeiroId === null) {
+      alert('Por favor, selecione um cliente e um barbeiro antes de salvar o agendamento.');
+      return;
     }
-  }
 
-  resetarFormulario(): void {
-    this.agendamento = {
-      cliente: '',
-      data: '',
-      horario: '',
-      barbeiro: ''
+    const agendaDto = {
+      clienteId: this.agendamento.clienteId,
+      barbeiroId: this.agendamento.barbeiroId,
+      dataHora: this.agendamento.dataHora
     };
-    this.mensagem = null;
+
+    this.agendamentoService.save(agendaDto).subscribe(
+      () => {
+        alert('Agendamento realizado com sucesso!');
+        this.erro = null;
+        this.agendamento = { clienteId: null, barbeiroId: null, dataHora: '' };
+      },
+      (error) => {
+        console.error('Erro ao realizar agendamento:', error);
+        alert('Ocorreu um erro ao realizar o agendamento. Tente novamente.');
+      }
+    );
   }
 }

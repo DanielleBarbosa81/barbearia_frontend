@@ -24,7 +24,13 @@ export class CadastrarClienteComponent {
 
   // Método chamado ao submeter o formulário
   onSubmit(): void {
-    this.clienteService.cadastrarCliente(this.cliente).subscribe(
+    const clienteDto = {
+      clienteNome: this.cliente.nome,
+      clienteEmail: this.cliente.email,
+      clienteTelefone: this.cliente.telefone,
+    };
+
+    this.clienteService.save(clienteDto).subscribe(
       (response) => {
         console.log('Cliente cadastrado com sucesso:', response);
 
