@@ -3,7 +3,7 @@ import { CadastrarClienteComponent } from './components/clientes/cadastrar-clien
 import { ListarClientesComponent } from './components/clientes/listar-clientes/listar-clientes.component';
 import { CadastrarBarbeiroComponent } from './components/barbeiros/cadastrar-barbeiros/cadastrar-barbeiros.component';
 import { ListarBarbeirosComponent } from './components/barbeiros/listar-barbeiros/listar-barbeiros.component';
-import { AgendarComponent } from './components/agendamentos/agendar/agendar.component';
+import { AgendaComponent } from './components/agendamentos/agenda/agenda.component';
 import { ListarAgendamentosComponent } from './components/agendamentos/listar-agendamentos/listar-agendamentos.component';
 
 export const routes: Routes = [
@@ -11,7 +11,7 @@ export const routes: Routes = [
   { path: 'clientes/listar', component: ListarClientesComponent },
   { path: 'barbeiros/cadastrar', component: CadastrarBarbeiroComponent },
   { path: 'barbeiros/listar', component: ListarBarbeirosComponent },
-  { path: 'agendamentos/agendar', component: AgendarComponent },
+  { path: 'agendamentos/agendar', component: AgendaComponent },
   { path: 'agendamentos/listar', component: ListarAgendamentosComponent },
   { path: '', redirectTo: '', pathMatch: 'full' }
 ];

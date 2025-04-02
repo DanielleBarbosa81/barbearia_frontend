@@ -16,6 +16,11 @@ export class BarbeiroService {
 
   constructor(private http: HttpClient) {}
 
+  getBarbeiros(): Observable<BarbeiroDto[]> {
+    return this.http.get<BarbeiroDto[]>(`${this.baseUrl}/listarBarbeiros`); // Ajuste aqui
+  }
+
+
   findById(barbeiroId: number): Observable<BarbeiroDto> {
     return this.http.get<BarbeiroDto>(`${this.baseUrl}/${barbeiroId}`);
   }
@@ -32,10 +37,7 @@ export class BarbeiroService {
     return this.http.put<BarbeiroDto>(`${this.baseUrl}/${barbeiroId}`, barbeiro);
   }
 
-  delete(barbeiroId: number, dataHora: string): Observable<void> {
-    return this.http.request<void>('delete', `${this.baseUrl}/${barbeiroId}`, {
-      body: { dataHora },
-    });
+  delete(barbeiroId: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${barbeiroId}`);
   }
-  
 }

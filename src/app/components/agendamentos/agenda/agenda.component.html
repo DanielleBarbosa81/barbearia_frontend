@@ -1,0 +1,40 @@
+<div class="form-container">
+  <h2>Agendar Cliente</h2>
+  <form [formGroup]="agendamentoForm" (ngSubmit)="onSubmit()">
+
+   <!-- Seleção de Cliente -->
+<div>
+  <label for="clienteId">Nome do Cliente:</label>
+  <select id="clienteId" formControlName="clienteId" required>
+    <option value="" disabled selected>Selecione um cliente</option>
+    <option *ngFor="let cliente of clientes" [value]="cliente.clienteId">{{ cliente.clienteNome }}</option>
+  </select>
+  <div *ngIf="formControls['clienteId'].invalid && formControls['clienteId'].touched">
+    <small class="error">O cliente é obrigatório.</small>
+  </div>
+</div>
+
+<!-- Seleção de Barbeiro -->
+<div>
+  <label for="barbeiroId">Nome do Barbeiro:</label>
+  <select id="barbeiroId" formControlName="barbeiroId" required>
+    <option value="" disabled selected>Selecione um barbeiro</option>
+    <option *ngFor="let barbeiro of barbeiros" [value]="barbeiro.barbeiroId">{{ barbeiro.barbeiroNome }}</option>
+  </select>
+  <div *ngIf="formControls['barbeiroId'].invalid && formControls['barbeiroId'].touched">
+    <small class="error">O barbeiro é obrigatório.</small>
+  </div>
+</div>
+
+<!-- Data e Hora -->
+<div>
+  <label for="dataHora">Data e Hora:</label>
+  <input type="datetime-local" id="dataHora" formControlName="dataHora" required>
+  <div *ngIf="formControls['dataHora'].invalid && formControls['dataHora'].touched">
+    <small class="error">A data e hora são obrigatórias.</small>
+  </div>
+</div>
+
+<button type="submit" [disabled]="agendamentoForm.invalid">Agendar</button>
+  </form>
+</div>

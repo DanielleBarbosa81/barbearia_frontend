@@ -14,9 +14,19 @@ export interface ClienteDto {
   providedIn: 'root',
 })
 export class ClienteService {
+
   private baseUrl = 'http://localhost:8080/clientes';
 
   constructor(private http: HttpClient) {}
+
+  getClientes(): Observable<ClienteDto[]> {
+    return this.http.get<ClienteDto[]>(`${this.baseUrl}/listarClientes`);
+  }
+
+
+  apiUrl<T>(apiUrl: any): Observable<any[]> {
+    throw new Error('Method not implemented.');
+  }
 
   findById(clienteId: number): Observable<ClienteDto> {
     return this.http.get<ClienteDto>(`${this.baseUrl}/${clienteId}`);
