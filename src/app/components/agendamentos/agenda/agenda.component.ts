@@ -4,7 +4,8 @@ import { AgendaDto } from '../../../models/agenda.dto.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ClienteDto, ClienteService } from '../../../services/cliente.service';
+import { ClienteService } from '../../../services/cliente.service';
+import { ClienteDto } from '../../../models/cliente.dto.model';
 import { BarbeiroDto, BarbeiroService } from '../../../services/barbeiro.service';
 
 @Component({

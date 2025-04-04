@@ -1,105 +1,113 @@
-/* Estilo geral do contêiner */
-.barbeiro-table-container {
-  margin: 20px auto;
-  max-width: 800px;
+/* Estilo geral do formulário */
+.form-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Arial', sans-serif;
-  text-align: center;
 }
 
-.barbeiro-table-container h2 {
+.form-container h2 {
+  text-align: center;
   color: #4CAF50;
   margin-bottom: 20px;
+  font-size: 24px;
 }
 
-/* Estilização do campo de pesquisa */
-.search-input {
-  width: 60%;
+/* Estilo dos campos de entrada */
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333333;
+}
+
+.form-container input {
+  width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
+  transition: border-color 0.3s;
 }
 
-.btn {
-  padding: 10px 15px;
-  margin: 5px;
-  font-size: 14px;
+.form-container input:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Estilo do botão de envio */
+.form-container button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #4CAF50;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 }
 
-/* Botão de pesquisa */
-.btn-search {
-  background-color: #2196F3;
-  color: white;
+.form-container button:hover {
+  background-color: #45a049;
+  transform: scale(1.02);
 }
 
-.btn-search:hover {
-  background-color: #1976D2;
+.form-container button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
 
-/* Botão de cadastrar */
-.btn-add {
-  background-color: #4CAF50;
-  color: white;
+/* Estilo geral da tabela de clientes */
+.client-table-container {
+  margin: 20px;
+  font-family: 'Arial', sans-serif;
 }
 
-.btn-add:hover {
-  background-color: #388E3C;
+.client-table-container h2 {
+  text-align: center;
+  color: #4CAF50;
+  margin-bottom: 20px;
 }
 
-/* Botão de editar */
-.btn-edit {
-  background-color: #FFC107;
-  color: white;
-}
-
-.btn-edit:hover {
-  background-color: #FFA000;
-}
-
-/* Botão de excluir */
-.btn-delete {
-  background-color: #F44336;
-  color: white;
-}
-
-.btn-delete:hover {
-  background-color: #D32F2F;
-}
-
-/* Estilo da tabela */
+/* Estilo da tabela formatada */
 .styled-table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+  border-collapse: collapse; /* Remove espaços entre bordas */
+  margin: 20px 0;
   font-size: 16px;
   text-align: left;
 }
 
 .styled-table th,
 .styled-table td {
-  border: 1px solid #ddd;
-  padding: 10px;
+  border: 1px solid #ddd; /* Adiciona bordas visíveis */
+  padding: 10px; /* Espaçamento interno das células */
 }
 
 .styled-table th {
-  background-color: #4CAF50;
-  color: white;
+  background-color: #4CAF50; /* Fundo do cabeçalho */
+  color: #ffffff; /* Cor do texto do cabeçalho */
+  text-align: left; /* Alinha os títulos à esquerda */
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #ddd; /* Adiciona linha inferior entre as células */
 }
 
 .styled-table tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: #f9f9f9; /* Fundo alternado para linhas pares */
 }
 
 .styled-table tbody tr:hover {
-  background-color: #f1f1f1;
+  background-color: #f1f1f1; /* Cor ao passar o mouse */
 }
 
-/* Mensagem de "Nenhum barbeiro encontrado" */
 .no-data {
   text-align: center;
   font-style: italic;
@@ -107,22 +115,39 @@
   margin-top: 20px;
 }
 
-/* Ajuste para telas pequenas */
+/* Ajuste para responsividade */
 @media (max-width: 600px) {
-  .search-input {
-    width: 100%;
-  }
-
-  .btn {
-    width: 100%;
-    margin-bottom: 5px;
-  }
-
   .styled-table th,
   .styled-table td {
     font-size: 14px;
     padding: 8px;
   }
+
+  .button-group {
+    display: flex;
+    gap: 10px; /* Espaço entre os botões */
+    margin-top: 10px;
+  }
+
+  .button-group button {
+    flex: 1; /* Faz com que os botões tenham o mesmo tamanho */
+  }
+  .btn-salvar {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .btn-salvar:hover {
+    background-color: #45a049;
+  }
+
 }
+
 
 

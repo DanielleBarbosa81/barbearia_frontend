@@ -1,12 +1,17 @@
 <div class="barbeiro-table-container">
-  <h2>Barbeiros</h2>
+  <h2>Barbeiros Cadastrados</h2>
 
+  <p *ngIf="mensagem" class="success">{{ mensagem }}</p>
+  <p *ngIf="erro" class="error">{{ erro }}</p>
+
+  <!-- Tabela de barbeiros -->
   <table *ngIf="barbeiros.length > 0" class="styled-table">
     <thead>
       <tr>
         <th>ID</th>
         <th>Nome</th>
         <th>Especialidade</th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -14,10 +19,55 @@
         <td>{{ barbeiro.barbeiroId }}</td>
         <td>{{ barbeiro.barbeiroNome }}</td>
         <td>{{ barbeiro.barbeiroEspecialidade }}</td>
+        <td>
+          <button (click)="editarBarbeiro(barbeiro)" class="btn-salvar">Editar</button>
+          <button (click)="excluirBarbeiro(barbeiro.barbeiroId!)" class="btn-salvar">Excluir</button>
+        </td>
       </tr>
     </tbody>
   </table>
+
+  <p *ngIf="barbeiros.length === 0" class="no-data">Nenhum barbeiro encontrado.</p>
 </div>
 
+<!-- Formulário de Edição (mantendo a mesma estrutura do formulário de cadastro) -->
+<div *ngIf="barbeiroSelecionado" class="form-container">
+  <h2>Editar Barbeiro</h2>
+
+  <p *ngIf="mensagem" class="success">{{ mensagem }}</p>
+  <p *ngIf="erro" class="error">{{ erro }}</p>
+
+  <form (ngSubmit)="salvarEdicao()" #barbeiroForm="ngForm">
+    <div>
+      <label for="nome">Nome:</label>
+      <input
+        type="text"
+        id="nome"
+        name="barbeiroNome"
+        [(ngModel)]="barbeiroSelecionado.barbeiroNome"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="especialidade">Especialidade:</label>
+      <input
+        type="text"
+        id="especialidade"
+        name="barbeiroEspecialidade"
+        [(ngModel)]="barbeiroSelecionado.barbeiroEspecialidade"
+        required
+      />
+    </div>
+
+    <td>
+      <button type="submit" [disabled]="!barbeiroForm.form.valid" class="btn-salvar">Salvar</button>
+    </td>
+<td>
+  <button type="button" (click)="cancelarEdicao()" class="btn-cancelar">Cancelar</button>
+</td>
 
 
+
+  </form>
+</div>

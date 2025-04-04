@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { ClienteDto } from '../models/cliente.dto.model';
 
-export interface ClienteDto {
+export interface LocalClienteDto {
   clienteId?: number;
   clienteNome: string;
   clienteTelefone?: string;
@@ -14,6 +15,9 @@ export interface ClienteDto {
   providedIn: 'root',
 })
 export class ClienteService {
+  getAll() {
+    throw new Error('Method not implemented.');
+  }
 
   private baseUrl = 'http://localhost:8080/clientes';
 
@@ -39,10 +43,11 @@ export class ClienteService {
   save(cliente: ClienteDto): Observable<ClienteDto> {
     return this.http.post<ClienteDto>(this.baseUrl, cliente);
   }
-
   update(clienteId: number, cliente: ClienteDto): Observable<ClienteDto> {
     return this.http.put<ClienteDto>(`${this.baseUrl}/${clienteId}`, cliente);
   }
+
+ 
 
   delete(clienteId: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${clienteId}`);

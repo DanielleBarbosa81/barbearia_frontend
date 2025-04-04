@@ -77,4 +77,37 @@
   .form-container button {
     font-size: 14px;
   }
+
+  /* Estilização do botão reduzido */
+.small-button {
+  padding: 5px 10px;
+  font-size: 0.9em;
+}
+
+/* Estilização do campo de pesquisa */
+.search-container {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.search-container input {
+  padding: 5px;
+  font-size: 1em;
+  width: 200px;
+}
+
+.search-container button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background-color: #0056b3;
+}
+
 }

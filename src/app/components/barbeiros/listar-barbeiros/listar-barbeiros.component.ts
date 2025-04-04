@@ -1,33 +1,86 @@
 import { Component, OnInit } from '@angular/core';
-import { BarbeiroService } from '../../../services/barbeiro.service';  // Serviço responsável por buscar dados dos barbeiros
+import { BarbeiroService } from '../../../services/barbeiro.service';
+import { BarbeiroDto } from '../../../models/barbeiro.dto.model';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-listar-barbeiros',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './listar-barbeiros.component.html',
   styleUrls: ['./listar-barbeiros.component.css'],
 })
 export class ListarBarbeirosComponent implements OnInit {
-  barbeiros: any[] = [];  // Lista de barbeiros
+  barbeiros: BarbeiroDto[] = [];
+  barbeiroSelecionado: BarbeiroDto | null = null;
+  mensagem: string | null = null;
+  erro: string | null = null;
 
   constructor(private barbeiroService: BarbeiroService) {}
 
   ngOnInit(): void {
-    this.barbeiroService.findAll().subscribe(
-      (data) => {
-        console.log('Resposta do backend:', data);  // Verifique a resposta
-        this.barbeiros = data;  // Atribui os dados recebidos ao array de barbeiros
-        console.log('Barbeiros carregados:', this.barbeiros);  // Log para verificar os barbeiros
+    this.carregarBarbeiros();
+  }
+
+  carregarBarbeiros(): void {
+    this.barbeiroService.getBarbeiros().subscribe(
+      (barbeiros) => {
+        // Garante que barbeiroEspecialidade tenha um valor padrão caso esteja indefinida
+        this.barbeiros = barbeiros.map((barbeiro) => ({
+          ...barbeiro,
+          barbeiroEspecialidade: barbeiro.barbeiroEspecialidade || 'Não especificado', // Valor padrão
+        }));
       },
       (error) => {
-        console.error('Erro ao carregar barbeiros:', error);  // Exibe erro, caso haja algum
+        console.error('Erro ao carregar barbeiros:', error);
+        this.erro = 'Erro ao carregar barbeiros!';
       }
     );
   }
+
+  editarBarbeiro(barbeiro: BarbeiroDto): void {
+    this.barbeiroSelecionado = { ...barbeiro };
+  }
+
+  salvarEdicao(): void {
+    if (this.barbeiroSelecionado && this.barbeiroSelecionado.barbeiroId !== undefined) {
+      this.barbeiroService.update(this.barbeiroSelecionado.barbeiroId, this.barbeiroSelecionado).subscribe(
+        () => {
+          this.mensagem = 'Barbeiro atualizado com sucesso!';
+          this.erro = null;
+          window.alert('Barbeiro atualizado com sucesso!'); // <- ALERTA AO ATUALIZAR
+          this.barbeiroSelecionado = null;
+          this.carregarBarbeiros();
+        },
+        (error) => {
+          console.error('Erro ao atualizar barbeiro:', error);
+          this.erro = 'Erro ao atualizar barbeiro!';
+        }
+      );
+    } else {
+      console.error('Erro: barbeiroId está indefinido.');
+      this.erro = 'Erro ao atualizar barbeiro!';
+    }
+  }
+
+  excluirBarbeiro(barbeiroId: number): void {
+    if (confirm('Tem certeza que deseja excluir este barbeiro?')) {
+      this.barbeiroService.delete(barbeiroId).subscribe(
+        () => {
+          this.mensagem = 'Barbeiro excluído com sucesso!';
+          this.erro = null;
+          this.carregarBarbeiros();
+        },
+        (error) => {
+          console.error('Erro ao excluir barbeiro:', error);
+          this.erro = 'Erro ao excluir barbeiro!';
+        }
+      );
+    }
+  }
+
+  cancelarEdicao(): void {
+    this.barbeiroSelecionado = null;
+  }
 }
-
-
-
-

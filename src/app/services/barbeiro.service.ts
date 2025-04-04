@@ -12,9 +12,13 @@ export interface BarbeiroDto {
   providedIn: 'root',
 })
 export class BarbeiroService {
+  create(barbeiroSelecionado: any) {
+    throw new Error('Method not implemented.');
+  }
   private baseUrl = 'http://localhost:8080/barbeiros';
 
   constructor(private http: HttpClient) {}
+  
 
   getBarbeiros(): Observable<BarbeiroDto[]> {
     return this.http.get<BarbeiroDto[]>(`${this.baseUrl}/listarBarbeiros`); // Ajuste aqui
