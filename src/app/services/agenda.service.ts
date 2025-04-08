@@ -9,6 +9,9 @@ import { AgendaDto } from  '../models/agenda.dto.component'; // Supondo que voc√
   providedIn: 'root'
 })
 export class AgendaService {
+  getAgendamentos() {
+    throw new Error('Method not implemented.');
+  }
   private apiUrl = 'http://localhost:8080/agendas'; // Altere conforme a URL da sua API
 
   constructor(private http: HttpClient) {}
@@ -26,4 +29,18 @@ export class AgendaService {
   searchBarbeiroByNome(barbeiroNome: string): Observable<any> {
     return this.http.get<any>(`http://localhost:8080/barbeiros/search?nome=${barbeiroNome}`);
   }
+
+  update(agendaId: number, agendaDto: AgendaDto): Observable<AgendaDto> {
+    return this.http.put<AgendaDto>(`${this.apiUrl}/${agendaId}`, agendaDto);
+  }
+  findAll(): Observable<AgendaDto[]> {
+    return this.http.get<AgendaDto[]>(`${this.apiUrl}/listarAgendas`);
+  }
+  findById(agendaId: number): Observable<AgendaDto> {
+    return this.http.get<AgendaDto>(`${this.apiUrl}/${agendaId}`);
+  }
+  delete(agendaId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${agendaId}`);
+  }
+
 }

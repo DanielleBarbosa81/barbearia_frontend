@@ -18,7 +18,7 @@ export class BarbeiroService {
   private baseUrl = 'http://localhost:8080/barbeiros';
 
   constructor(private http: HttpClient) {}
-  
+
 
   getBarbeiros(): Observable<BarbeiroDto[]> {
     return this.http.get<BarbeiroDto[]>(`${this.baseUrl}/listarBarbeiros`); // Ajuste aqui
@@ -40,8 +40,9 @@ export class BarbeiroService {
   update(barbeiroId: number, barbeiro: BarbeiroDto): Observable<BarbeiroDto> {
     return this.http.put<BarbeiroDto>(`${this.baseUrl}/${barbeiroId}`, barbeiro);
   }
-
-  delete(barbeiroId: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${barbeiroId}`);
+  delete(barbeiroId: number, dataHora: string): Observable<void> {
+    return this.http.request<void>('delete', `${this.baseUrl}/${barbeiroId}`, {
+      body: dataHora,
+    });
   }
 }

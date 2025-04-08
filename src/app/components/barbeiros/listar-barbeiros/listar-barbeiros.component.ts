@@ -66,19 +66,25 @@ export class ListarBarbeirosComponent implements OnInit {
 
   excluirBarbeiro(barbeiroId: number): void {
     if (confirm('Tem certeza que deseja excluir este barbeiro?')) {
-      this.barbeiroService.delete(barbeiroId).subscribe(
+      const dataHoraAtual = new Date().toISOString(); // Pega a data atual no formato ISO
+
+      this.barbeiroService.delete(barbeiroId, dataHoraAtual).subscribe(
         () => {
-          this.mensagem = 'Barbeiro excluído com sucesso!';
+        window.alert('Barbeiro excluído com sucesso!'); // <- ALERTA AO EXCLUIR
           this.erro = null;
           this.carregarBarbeiros();
         },
         (error) => {
-          console.error('Erro ao excluir barbeiro:', error);
-          this.erro = 'Erro ao excluir barbeiro!';
+          const mensagemErroBackend =
+            error?.error?.message ||
+            'Erro ao excluir barbeiro. Pode haver agendamentos pendentes.';
+          this.erro = mensagemErroBackend;
+          window.alert(mensagemErroBackend);
         }
       );
     }
   }
+
 
   cancelarEdicao(): void {
     this.barbeiroSelecionado = null;

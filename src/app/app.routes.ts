@@ -4,7 +4,7 @@ import { ListarClientesComponent } from './components/clientes/listar-clientes/l
 import { CadastrarBarbeiroComponent } from './components/barbeiros/cadastrar-barbeiros/cadastrar-barbeiros.component';
 import { ListarBarbeirosComponent } from './components/barbeiros/listar-barbeiros/listar-barbeiros.component';
 import { AgendaComponent } from './components/agendamentos/agenda/agenda.component';
-import { ListarAgendamentosComponent } from './components/agendamentos/listar-agendamentos/listar-agendamentos.component';
+import { ListarAgendaComponent } from './components/agendamentos/listar-agendamentos/listar-agendamentos.component';
 
 export const routes: Routes = [
   { path: 'clientes/cadastrar', component: CadastrarClienteComponent },
@@ -12,7 +12,7 @@ export const routes: Routes = [
   { path: 'barbeiros/cadastrar', component: CadastrarBarbeiroComponent },
   { path: 'barbeiros/listar', component: ListarBarbeirosComponent },
   { path: 'agendamentos/agendar', component: AgendaComponent },
-  { path: 'agendamentos/listar', component: ListarAgendamentosComponent },
+  { path: 'agendamentos/listar', component: ListarAgendaComponent },
   { path: '', redirectTo: '', pathMatch: 'full' }
 ];
 

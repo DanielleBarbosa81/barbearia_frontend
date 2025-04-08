@@ -1,27 +1,91 @@
-<h2>Lista de Agendamentos</h2>
+<div class="agenda-table-container">
+  <h2>Agendamentos Cadastrados</h2>
 
-<!-- Tabela de agendamentos -->
-<table *ngIf="agendamentos.length > 0">
-  <thead>
-    <tr>
-      <th>Cliente</th>
-      <th>Barbeiro</th>
-      <th>Data</th>
-      <th>Hora</th>
-      <th>Serviço</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let agendamento of agendamentos">
-      <td>{{ agendamento.cliente }}</td>
-      <td>{{ agendamento.barbeiro }}</td>
-      <td>{{ agendamento.data }}</td>
-      <td>{{ agendamento.hora }}</td>
-      <td>{{ agendamento.servico }}</td>
-    </tr>
-  </tbody>
-</table>
+  <p *ngIf="mensagem" class="success">{{ mensagem }}</p>
+  <p *ngIf="erro" class="error">{{ erro }}</p>
 
-<!-- Mensagem para lista vazia -->
-<p *ngIf="agendamentos.length === 0">Nenhum agendamento encontrado.</p>
+  <!-- Tabela de Agendamentos -->
+  <table *ngIf="agendamentos.length > 0" class="styled-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Barbeiro</th>
+        <th>Data e Hora</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let agendamento of agendamentos">
+        <td>{{ agendamento.agendaId }}</td>
+        <td>{{ agendamento.clienteNome }}</td>
+        <td>{{ agendamento.barbeiroNome }}</td>
+        <td>{{ agendamento.dataHora }}</td>
+        <td>
+          <button (click)="editarAgendamento(agendamento)" class="btn-salvar">Editar</button>
+          <button (click)="excluirAgendamento(agendamento.agendaId!)" class="btn-salvar">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
+  <p *ngIf="agendamentos.length === 0" class="no-data">Nenhum agendamento encontrado.</p>
+</div>
+
+<!-- Formulário de Edição (mantendo a mesma estrutura do formulário de cadastro) -->
+<div *ngIf="agendamentoSelecionado" class="form-container">
+  <h2>Editar Agendamento</h2>
+
+  <p *ngIf="mensagem" class="success">{{ mensagem }}</p>
+  <p *ngIf="erro" class="error">{{ erro }}</p>
+
+  <form (ngSubmit)="salvarEdicao()" #agendaForm="ngForm">
+    <div>
+      <label for="cliente">Cliente:</label>
+      <select
+        id="cliente"
+        name="clienteId"
+        [(ngModel)]="agendamentoSelecionado.clienteId"
+        required
+      >
+        <option *ngFor="let cliente of clientes" [value]="cliente.clienteId">
+          {{ cliente.clienteNome }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label for="barbeiro">Barbeiro:</label>
+      <select
+        id="barbeiro"
+        name="barbeiroId"
+        [(ngModel)]="agendamentoSelecionado.barbeiroId"
+        required
+      >
+        <option *ngFor="let barbeiro of barbeiros" [value]="barbeiro.barbeiroId">
+          {{ barbeiro.barbeiroNome }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label for="dataHora">Data e Hora:</label>
+      <input
+        type="datetime-local"
+        id="dataHora"
+        name="dataHora"
+        [(ngModel)]="agendamentoSelecionado.dataHora"
+        required
+      />
+    </div>
+
+    <div class="button-container">
+      <td>
+      <button type="submit" [disabled]="!agendaForm.form.valid" class="btn-salvar">Salvar</button>
+    </td>
+    <td>
+      <button type="button" (click)="cancelarEdicao()" class="btn-cancelar">Cancelar</button>
+    </td>
+    </div>
+  </form>
+</div>
